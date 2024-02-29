@@ -5,6 +5,14 @@
       "version": "1.0.0",
       "description": "API documentation "
     },
+    "servers": [
+      {
+        "url": "http://soa41d-project1.eastus.azurecontainer.io/"
+      },
+      {
+        "url": "http://localhost:8080"
+      }
+    ],
     "paths": {
       "/recommendation/custom": {
         "get": {

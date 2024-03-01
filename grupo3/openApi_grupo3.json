@@ -1,0 +1,141 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Meal-Recommendation API - Grupo 03",
+    "description": "Carlos Araya Ramírez, Justin Fernández Badilla, Fátima Leiva, Jimena León Huertas, Brian Wagemans"
+  },
+  "paths": {
+    "/api/Meal": {
+      "get": {
+        "tags": [
+          "Meal"
+        ],
+        "parameters": [
+          {
+            "name": "SourceType",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/SourceType"
+            }
+          },
+          {
+            "name": "MealName1",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CourseType1",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/CourseType"
+            }
+          },
+          {
+            "name": "MealName2",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          {
+            "name": "CourseType2",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/CourseType"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MealResponseServerResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MealResponseServerResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MealResponseServerResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CourseType": {
+        "enum": [
+          "MainCourse",
+          "Drink",
+          "Dessert"
+        ],
+        "type": "string"
+      },
+      "Meal": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "CourseType": {
+            "$ref": "#/components/schemas/CourseType"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MealResponse": {
+        "type": "object",
+        "properties": {
+          "RecommendedMeals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Meal"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MealResponseServerResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/MealResponse"
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SourceType": {
+        "enum": [
+          "Local",
+          "AI",
+          "Dynamic"
+        ],
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,82 @@
+openapi: 3.0.1
+info:
+  title: API para recomendaciones de Comida - Grupo 07
+  description: API para recomendaciones en cuanto a combinaciones de comidas. Realizado por Mario Carranza, Daniel Rayo, Brandon Gómez, Ricardo Rodríguez.
+  version: 1.0.0
+servers: 
+- url: https://soad-my-service.onrender.com/
+  description: Usar como url base del API.
+- url: https://brandonmgg.github.io/SOAD-My_Service/
+  description: En este link se encuentra la documentación.
+  
+tags:
+- name: Clientes
+  description: Maneja todo lo relacionado con las peticiones de los clientes, independientemente del endpoint seleccionado.
+
+paths:
+  /recommendation:
+    post:
+      tags:
+        - Clientes
+      summary: Obtiene la petición de recomendación del cliente (si es solo una petición, se puede omitir los atributos "tipo2" y "data2") y devuelve una combinación adecuada según el tipo de comida, postre o bebida proporcionado.
+      requestBody:
+        content: 
+          application/json:
+            schema:
+              $ref: '#/components/schemas/clientePost'
+        required: true
+      responses:
+        200: 
+          description: ¡Todo Bien! Los datos fueron procesados correctamente.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  platoPrincipal:
+                    type: string
+                  bebida:
+                    type: string
+                  postre:
+                    type: string
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+  
+components:
+  responses:
+    Unauthorized:
+      description: (Unauthorized) No hay autorización para llamar al servicio.
+    NotFound: 
+      description: (NotFound) No se encontró la información.
+    BadRequest:
+      description: (BadRequest) Los datos enviados son incorrectos o hay espacios requeridos si llenar.
+    ServerError:
+      description: (ServerError) Error en el servidor.
+  
+  schemas:
+    clientePost:
+      type: object
+      properties:
+        tipo1:
+          type: string
+          description: Tipo de comida 1
+        data1:
+          type: string
+          description: Nombre del tipo de comida 1
+        endpoint:
+          type: string
+          description: Endpoint (estatico, IA, externo)
+        tipo2:
+          type: string
+          description: Tipo de comida 2
+        data2:
+          type: string
+          description: Nombre del tipo de comida 2
+
+  

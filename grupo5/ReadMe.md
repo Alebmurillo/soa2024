@@ -1,3 +1,5 @@
+## Link al Repositorio: https://github.com/cuadriante/P1SOA_MY_SERVICE/
+
 ## API INPUTS
 
 To utilize the API correctly, users should utilize the "Get Recommendation" request, which requires three inputs: "input," "recommendation_of," and "recommendation_type."

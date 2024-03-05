@@ -22,3 +22,7 @@ paths:
                 type: array
                 items: 
                   type: string
+
+- [ ]  Reviso los requerimientos de openapi?
+
+- [ ] La implementación funciona en producción?

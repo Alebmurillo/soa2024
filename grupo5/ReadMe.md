@@ -30,6 +30,7 @@ By providing these inputs correctly, users can tailor their requests and receive
 The recommendation message is generated in response to the input provided by the user and the desired recommendation target. For example, if the user requests a recommendation for the dessert component based on the main dish they have selected, the output message will specify the recommended dessert option. Similarly, if the user opts for recommendations based on an AI model or an external endpoint, the output message will reflect the recommended item sourced from these sources accordingly.
 
 ## FOOD IN AVAIBLE FOR RECOMMENDATIONS
+```json
 [
         "main_dish" : "pizza",
         "drink" : "coke",
@@ -42,7 +43,7 @@ The recommendation message is generated in response to the input provided by the
         "dessert" : "apple"
 
 ]
-
+```
 
 ## HOW TO CONNECT TO THE REMOTE API
 
